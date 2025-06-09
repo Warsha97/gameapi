@@ -12,13 +12,14 @@ namespace MyTestDotnetApp.Endpoints
             new (3, "FIFA 23", "Sports", 69.99M, new DateOnly(2022, 9, 27))
             ];
 
-        public static WebApplication MapGamesEndpoint(this WebApplication app)
+        public static RouteGroupBuilder MapGamesEndpoint(this WebApplication app)
         {
+            var group = app.MapGroup("games");
             // GET /games
-            app.MapGet("games", () => games);
+            group.MapGet("/", () => games);
 
             // GET /games/{id}
-            app.MapGet("games/{id}", (int id) =>
+            group.MapGet("/{id}", (int id) =>
             {
                 GameDto? game = games.Find(game => game.Id == id);
                 return game is null ? Results.NotFound() : Results.Ok(game);
@@ -27,7 +28,7 @@ namespace MyTestDotnetApp.Endpoints
 
 
             // POST /games
-            app.MapPost("games", (CreateGameDto newGame) =>
+            group.MapPost("/", (CreateGameDto newGame) =>
             {
                 GameDto game = new GameDto(
                     games.Count + 1,
@@ -42,7 +43,7 @@ namespace MyTestDotnetApp.Endpoints
 
 
             // PUT /games/{id}
-            app.MapPut("games/{id}", (int id, UpdateGameDto updateDto) =>
+            group.MapPut("/{id}", (int id, UpdateGameDto updateDto) =>
             {
                 int index = games.FindIndex(game => game.Id == id);
 
@@ -56,13 +57,13 @@ namespace MyTestDotnetApp.Endpoints
 
 
             // DELETE /games/{id}
-            app.MapDelete("games/{id}", (int id) =>
+            group.MapDelete("/{id}", (int id) =>
             {
                 games.RemoveAll(game => game.Id == id);
                 return Results.NoContent();
             });
 
-            return app;
+            return group;
         }
 
 
