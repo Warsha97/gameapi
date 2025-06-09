@@ -1,0 +1,28 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+GET http://localhost:5070/games
+
+###
+GET http://localhost:5070/games/4
+
+###
+POST http://localhost:5070/games
+Content-Type: application/json
+{
+    "Name": "Test New Game",
+    "Genre": "Roleplaying",
+    "Price": 88.88,
+    "ReleaseDate": "2024-09-09"
+}
+
+###
+PUT http://localhost:5070/games/4
+Content-Type: application/json
+{
+    "Name": "Test New Game-updated",
+    "Genre": "Roleplaying",
+    "Price": 100.99,
+    "ReleaseDate": "2024-09-09"
+}
+
+###
+DELETE http://localhost:5070/games/2

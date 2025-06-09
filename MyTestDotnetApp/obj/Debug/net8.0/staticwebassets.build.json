@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "xpPij2MCduF3LrW7nJyINGkYETcZo81U9TyA41ZawsY=",
+  "Source": "MyTestDotnetApp",
+  "BasePath": "_content/MyTestDotnetApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
