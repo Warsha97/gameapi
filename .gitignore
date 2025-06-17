@@ -34,6 +34,6 @@ msbuild.wrn
 .vs/
 
 # Databaes file
-*.wal
+*.db
 *.db-wal
 *.db-shm
