@@ -32,3 +32,8 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+# Databaes file
+.db 
+.db-wal
+.db-shm
