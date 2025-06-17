@@ -18,7 +18,7 @@ Content-Type: application/json
 PUT http://localhost:5070/games/4
 Content-Type: application/json
 {
-    "Name": "Test New Game-updated",
+    "Name": "Test New Game-updatedTest New Game-updatedTest New Game-updatedTest New Game-updatedTest New Game-updated",
     "Genre": "Roleplaying",
     "Price": 100.99,
     "ReleaseDate": "2024-09-09"
