@@ -1,4 +1,6 @@
-﻿using MyTestDotnetApp.Dtos;
+﻿using MyTestDotnetApp.Data;
+using MyTestDotnetApp.Dtos;
+using MyTestDotnetApp.Entities;
 
 namespace MyTestDotnetApp.Endpoints
 {
@@ -29,16 +31,24 @@ namespace MyTestDotnetApp.Endpoints
 
 
             // POST /games
-            group.MapPost("/", (CreateGameDto newGame) =>
+            /*Dependency injection of dbcontext*/
+            group.MapPost("/", (CreateGameDto newGame, GameStoreContext dbContext) =>
             {
-                GameDto game = new GameDto(
-                    games.Count + 1,
-                    newGame.Name,
-                    newGame.Genre,
-                    newGame.Price,
-                    newGame.ReleaseDate);
-                games.Add(game);
-                return Results.CreatedAtRoute(getGameEndpoint, new { Id = game.Id }, game);
+                Game game = new Game()
+                {
+                    Name = newGame.Name,
+                    Genre = dbContext.Genres.Find(newGame.GenreId),
+                    Price = newGame.Price,
+                    ReleaseDate = newGame.ReleaseDate
+                };
+               
+                dbContext.Games.Add(game); // adding this to db context and letting entity framework know
+                dbContext.SaveChanges(); // Actual conversion from entity framework to SQL
+
+                GameDto gameDto = new(game.Id, game.Name, game.Genre.Name, game.Price, game.ReleaseDate);
+
+
+                return Results.CreatedAtRoute(getGameEndpoint, new { Id = game.Id }, gameDto);
             });
 
 

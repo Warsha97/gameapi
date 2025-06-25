@@ -8,10 +8,10 @@ GET http://localhost:5070/games/1
 POST http://localhost:5070/games
 Content-Type: application/json
 {
-    "Name": "Test New Game",
-    "Genre": "Roleplaying",
-    "Price": 88.88,
-    "ReleaseDate": "2024-09-09"
+    "Name": "Street Fighter II",
+    "GenreId": 1,
+    "Price": 9.99,
+    "ReleaseDate": "1991-02-01"
 }
 
 ###
